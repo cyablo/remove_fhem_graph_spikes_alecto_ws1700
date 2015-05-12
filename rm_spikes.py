@@ -1,21 +1,18 @@
-# Constants
 inputfile  = "C:/temp/temp.txt"
 outputfile = "C:/temp/new_temp.txt"
 searchstring_temp = "temperature:"
 searchstring_hum = "humidity:"
 threshold = 2
 
-# Variables
 buffer = []
 compare_temps = []
 compare_hums = []
 line_count = 1
 
-# Open Files
-file = open(inputfile, 'r')
+input = open(inputfile, 'r')
 output = open(outputfile, 'w')
 
-for line in file:
+for line in input:
   if len(buffer) < 7:
     buffer.append(line)
     
@@ -50,4 +47,3 @@ for line in file:
       output.write(buffer[0])
       buffer.pop(0)
   line_count += 1  
-pass
