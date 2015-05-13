@@ -1,5 +1,8 @@
-inputfile  = "C:/temp/temp.txt"
-outputfile = "C:/temp/new_temp.txt"
+import os
+import shutil
+
+inputfile  = "/opt/fhem/log/XXX.log"
+outputfile = "/opt/temp/log/XXX.tmp"
 searchstring_temp = "temperature:"
 searchstring_hum = "humidity:"
 threshold = 2
@@ -46,4 +49,9 @@ for line in input:
       del compare_hums_new[:]
       output.write(buffer[0])
       buffer.pop(0)
-  line_count += 1  
+  line_count += 1
+
+input.close()
+output.close()
+shutil.copy(outputfile, inputfile)
+os.remove(outputfile)
