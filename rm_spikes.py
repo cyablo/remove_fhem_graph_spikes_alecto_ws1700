@@ -36,11 +36,11 @@ for line in input:
           float_comma = compare_temps[1]
           if (float_comma).is_integer():
             float_comma = int(float_comma)
-          buffer = [buffer_elements.replace(str(float_comma), str(round(((compare_temps[0] + compare_temps[2]) / 2), 1))) for buffer_elements in buffer]
+          buffer = [buffer_elements.replace(searchstring_temp + " " + str(float_comma), searchstring_temp + " " + str(round(((compare_temps[0] + compare_temps[2]) / 2), 1))) for buffer_elements in buffer]
       
       if len(compare_hums) == 3:
         if abs(compare_hums[1] - compare_hums[0]) >= threshold_hums and abs(compare_hums[1] - compare_hums[2]) >= threshold_hums:
-          buffer = [buffer_elements.replace(str(compare_hums[1]), str((compare_hums[0] + compare_hums[2]) / 2)) for buffer_elements in buffer]
+          buffer = [buffer_elements.replace(searchstring_hum + " " + str(compare_hums[1]), searchstring_hum + " " + str((compare_hums[0] + compare_hums[2]) / 2)) for buffer_elements in buffer]
       
       compare_temps_new = []
       compare_hums_new = []
