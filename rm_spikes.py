@@ -52,6 +52,9 @@ for line in input:
       buffer.pop(0)
   line_count += 1
 
+for buffer_element in buffer:
+  output.write(buffer_element)
+
 input.close()
 output.close()
 shutil.copy(outputfile, inputfile)
