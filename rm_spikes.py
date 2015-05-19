@@ -2,11 +2,12 @@ import os
 import shutil
 
 inputfile  = "/opt/fhem/log/XXX.log"
-outputfile = "/opt/temp/log/XXX.tmp"
+outputfile = "/opt/fhem/log/XXX.tmp"
 searchstring_temp = "temperature:"
 searchstring_hum = "humidity:"
 threshold_temps = 1
 threshold_hums = 2
+buffer_size = 9
 
 buffer = []
 compare_temps = []
@@ -17,10 +18,10 @@ input = open(inputfile, 'r')
 output = open(outputfile, 'w')
 
 for line in input:
-  if len(buffer) < 7:
+  if len(buffer) < buffer_size:
     buffer.append(line)
     
-  if len(buffer) == 7:
+  if len(buffer) == buffer_size:
     if len([s for s in buffer if searchstring_temp in s]) != 3 and len([s for s in buffer if searchstring_hum in s]) != 3:
       output.write(buffer[0])
       buffer.pop(0)
