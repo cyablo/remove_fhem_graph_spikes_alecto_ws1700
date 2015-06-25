@@ -8,7 +8,7 @@ searchstring_temp = "temperature:"
 searchstring_hum = "humidity:"
 threshold_temps = 1
 threshold_hums = 2
-buffer_lenght = 9
+buffer_length = 9
 
 buffer = []
 compare_temps = []
@@ -27,10 +27,10 @@ input = open(inputfile, 'r')
 output = open(outputfile, 'w')
 
 for line in input:
-  if len(buffer) < buffer_size:
+  if len(buffer) < buffer_length:
     buffer.append(line)
     
-  if len(buffer) == buffer_size:
+  if len(buffer) == buffer_length:
     if len([s for s in buffer if searchstring_temp in s]) != 3 and len([s for s in buffer if searchstring_hum in s]) != 3:
       output.write(buffer[0])
       buffer.pop(0)
