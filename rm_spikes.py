@@ -1,18 +1,27 @@
 import os
 import shutil
+import glob
 
-inputfile  = "/opt/fhem/log/XXX.log"
-outputfile = "/opt/fhem/log/XXX.tmp"
+pathtolog = "/opt/fhem/log/"
+filepattern = "TempKeller"
 searchstring_temp = "temperature:"
 searchstring_hum = "humidity:"
 threshold_temps = 1
 threshold_hums = 2
-buffer_size = 9
+buffer_lenght = 9
 
 buffer = []
 compare_temps = []
 compare_hums = []
 line_count = 1
+
+try:
+    inputfile = max(glob.iglob(pathtolog + '*' + filepattern + '*.log'), key=os.path.getctime)
+except ValueError:
+    print "Could not find File matching Pattern in specified Path, Exiting!"
+    exit()
+
+outputfile = inputfile + '.tmp'
 
 input = open(inputfile, 'r')
 output = open(outputfile, 'w')
